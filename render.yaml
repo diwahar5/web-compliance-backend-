@@ -1,14 +1,17 @@
 services:
-  - type: web                     # This tells Render you're hosting a web app
-    name: web-compliance-backend  # The name of your Render service
-    env: python                   # Use Python runtime environment
+  - type: web
+    name: web-compliance-backend
+    env: python
 
+    # Build steps: install deps and browser binaries (chromium + necessary deps).
     buildCommand: |
       pip install -r requirements.txt
+      # Ensure playwright downloads browsers and system deps on Render
       python -m playwright install --with-deps chromium
 
+    # Start command — make sure this matches how you run locally
     startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
 
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.6
+        value: "3.11"
