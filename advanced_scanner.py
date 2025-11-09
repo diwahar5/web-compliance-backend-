@@ -246,9 +246,9 @@ def powerful_scan(url: str, save_screenshot: bool = SAVE_SCREENSHOT) -> Dict[str
 
     try:
         with sync_playwright() as pw:
-            browser = pw.chromium.launch(
+           browser = pw.chromium.launch(
     headless=True,
-    args=["--no-sandbox", "--disable-setuid-sandbox"]
+    executable_path="/app/.playwright/ms-playwright/chromium-1105/chrome-linux/chrome"
 )
             context = browser.new_context(
                 ignore_https_errors=True,
