@@ -1,12 +1,15 @@
 #!/bin/bash
-
-set -e  # Exit if any command fails
+set -e
 
 echo "🚀 Installing Python dependencies..."
 pip install -r requirements.txt
 
-echo "🧠 Installing Playwright browsers with dependencies..."
-python -m playwright install chromium
-python -m playwright install-deps chromium
+echo "🧠 Installing Playwright browsers (Chromium only)..."
+python -m playwright install --with-deps chromium
 
-echo "✅ Playwright browser installation complete!"
+# Move browsers into a persistent app directory
+echo "📦 Moving Playwright browsers into /app/.playwright..."
+mkdir -p /app/.playwright
+cp -r /root/.cache/ms-playwright /app/.playwright || true
+
+echo "✅ Playwright setup complete!"
