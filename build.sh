@@ -1,9 +1,12 @@
 #!/bin/bash
 
-echo "🚀 Installing dependencies..."
+set -e  # Exit if any command fails
+
+echo "🚀 Installing Python dependencies..."
 pip install -r requirements.txt
 
-echo "🧠 Installing Playwright browsers..."
-python -m playwright install --with-deps chromium
+echo "🧠 Installing Playwright browsers with dependencies..."
+python -m playwright install chromium
+python -m playwright install-deps chromium
 
-echo "✅ Build complete."
+echo "✅ Playwright browser installation complete!"
