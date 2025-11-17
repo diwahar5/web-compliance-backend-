@@ -265,9 +265,7 @@ def powerful_scan(url: str, save_screenshot: bool = SAVE_SCREENSHOT) -> Dict[str
 
     try:
         with sync_playwright() as pw:
-
             browser = pw.chromium.launch(headless=True)
-
             context = browser.new_context(
                 ignore_https_errors=True,
                 user_agent=USER_AGENT,
